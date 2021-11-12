@@ -23,7 +23,7 @@ export const getStudies = () => async dispatch =>
 export const addStudy = () => async dispatch =>
 {
     try {
-        const res = await axios.post('/api/studies')
+        const res = await axios.post('/api/study')
         dispatch({
             type:ADD_STUDY,
             payload:res.data

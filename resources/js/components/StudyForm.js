@@ -1,79 +1,122 @@
-import React from "react";
+import React, {Fragment, useState} from "react";
+import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {addStudy} from "../actions/study";
 
-const StudyForm = () => {
+const StudyForm = ({addStudy}) => {
+
+    const [formData, setFormData] = useState(
+        {
+            name: "",
+            statusKey: "",
+            studyThumbnail: "",
+            imagesCount: "",
+            tags: "",
+        },
+        []
+    );
+    const {name, statusKey, studyThumbnail, imagesCount, tags} = formData;
+
+    const onChange = e =>
+        setFormData({...formData, [e.target.name]: e.target.value});
+
+    const onSubmit = e => {
+        e.preventDefault();
+        addStudy(formData);
+        setFormData({
+            name: "", statusKey: "", studyThumbnail: "", imagesCount: "", tags: ""
+        });
+    };
+
     return (
         <div className="mb-5">
-        <form>
-            <div className="">
-                <div className="input-field col s12">
-                    <i className="material-icons prefix">
-                        account_circle
-                    </i>
-                    <input
-                        id="icon_prefix"
-                        type="text"
-                        className="validate"
-                        name="username"
-                    />
-                    <label htmlFor="icon_prefix">Enter your Name</label>
-                </div>
-                <div className="input-field col s12">
-                    <i className="material-icons prefix">sms</i>
-
-                    <textarea
-                        id="textarea1"
-                        className="materialize-textarea"
-                        name="statusKey"
-                    ></textarea>
-
-                    <label htmlFor="textarea1">Enter a status key...</label>
-                </div>
-                <div className="input-field col s12">
-                    <i className="material-icons prefix">sms</i>
-
-                    <textarea
-                        id="textarea2"
-                        className="materialize-textarea"
-                        name="studyThumbnail"
-                    ></textarea>
-
-                    <label htmlFor="textarea2">Enter a study thubnail link...</label>
-                </div>
-                <div className="input-field col s12">
-                    <i className="material-icons prefix">sms</i>
-
-                    <textarea
-                        id="textarea3"
-                        className="materialize-textarea"
-                        name="imagesCount"
-                    ></textarea>
-
-                    <label htmlFor="textarea3">Enter an images count</label>
-                </div>
-                <div className="input-field col s12">
-                    <i className="material-icons prefix">sms</i>
-
-                    <textarea
-                        id="textarea4"
-                        className="materialize-textarea"
-                        name="tags"
-                    ></textarea>
-
-                    <label htmlFor="textarea4">Enter a tags</label>
-                </div>
-
-            </div>
-            <button
-                className="btn waves-effect waves-light ml-2"
-                type="submit"
-                name="action"
+            <form
+                onSubmit={e => {
+                    onSubmit(e);
+                }}
             >
-                Submit
-                <i className="material-icons right">send</i>
-            </button>
-        </form>
-    </div>
+                <div className="">
+                    <div className="input-field col s12">
+                        <i className="material-icons prefix">
+                            account_circle
+                        </i>
+                        <input
+                            type="text"
+                            className="validate"
+                            name="name"
+                            placeholder="Enter study Name"
+                            value={name}
+                            onChange={e => onChange(e)}
+                        />
+                    </div>
+                    <div className="input-field col s12">
+                        <i className="material-icons prefix">sms</i>
+                        <input
+                            type="text"
+                            className="validate"
+                            name="statusKey"
+                            placeholder="Enter a status key..."
+
+                            value={statusKey}
+                            onChange={e => onChange(e)}
+                        />
+                    </div>
+                    <div className="input-field col s12">
+                        <i className="material-icons prefix">sms</i>
+
+                        <input
+                            type="text"
+                            className="validate"
+                            name="studyThumbnail"
+                            placeholder="Enter a study thumbnail link..."
+                            value={studyThumbnail}
+                            onChange={e => onChange(e)}
+                        />
+
+                    </div>
+                    <div className="input-field col s12">
+                        <i className="material-icons prefix">sms</i>
+
+                        <input
+                            type="number"
+                            className="validate"
+                            name="imagesCount"
+                            placeholder="Enter an images count"
+                            value={imagesCount}
+                            onChange={e => onChange(e)}
+                        />
+                    </div>
+                    <div className="input-field col s12">
+                        <i className="material-icons prefix">sms</i>
+
+                        <input
+                            type="text"
+                            className="validate"
+                            name="tags"
+                            placeholder="Enter a tags"
+                            value={tags}
+                            onChange={e => onChange(e)}
+                        />
+
+                    </div>
+
+                </div>
+                <button
+                    className="btn waves-effect waves-light ml-2"
+                    type="submit"
+                    name="action"
+                >
+                    Submit
+                    <i className="material-icons right">send</i>
+                </button>
+            </form>
+        </div>
     )
 }
 
-export default StudyForm
+StudyForm.propTypes = {
+    addStudy: PropTypes.func.isRequired
+};
+
+
+export default connect(null, {addStudy})(StudyForm);
