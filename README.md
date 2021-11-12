@@ -7,4 +7,5 @@ php artisan key:generate<br/>
 npm install<br/>
 npm run dev<br/>
 php artisan db:seed --class=StudySeeder<br/>
-php artisan serve and npm run watch and we can open the site in localhost:8000
+php artisan serve<br/>
+npm run watch and we can open the site in localhost:8000

@@ -19,7 +19,7 @@ class CreateStudiesTable extends Migration
             $table->string('statusKey');
             $table->string('studyThumbnail');
             $table->integer('imagesCount');
-            $table->json('tags')->nullable();
+            $table->json('tags');
             $table->timestamps();
         });
     }
