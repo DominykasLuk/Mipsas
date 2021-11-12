@@ -6,6 +6,7 @@ composer update<br/>
 php artisan key:generate<br/>
 npm install<br/>
 npm run dev<br/>
+php artisan migrate<br/>
 php artisan db:seed --class=StudySeeder<br/>
 php artisan serve<br/>
 npm run watch and we can open the site in localhost:8000
