@@ -2136,30 +2136,35 @@ var getStudies = function getStudies() {
     };
   }();
 };
-var addStudy = function addStudy() {
+var addStudy = function addStudy(formData) {
   return /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(dispatch) {
-      var res;
+      var config, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              _context2.prev = 0;
-              _context2.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/study');
+              config = {
+                headers: {
+                  "Content-Type": "application/json"
+                }
+              };
+              _context2.prev = 1;
+              _context2.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/study', formData, config);
 
-            case 3:
+            case 4:
               res = _context2.sent;
               dispatch({
                 type: _types__WEBPACK_IMPORTED_MODULE_2__.ADD_STUDY,
                 payload: res.data
               });
-              _context2.next = 10;
+              _context2.next = 11;
               break;
 
-            case 7:
-              _context2.prev = 7;
-              _context2.t0 = _context2["catch"](0);
+            case 8:
+              _context2.prev = 8;
+              _context2.t0 = _context2["catch"](1);
               dispatch({
                 type: _types__WEBPACK_IMPORTED_MODULE_2__.STUDIES_ERROR,
                 payload: {
@@ -2168,12 +2173,12 @@ var addStudy = function addStudy() {
                 }
               });
 
-            case 10:
+            case 11:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2, null, [[0, 7]]);
+      }, _callee2, null, [[1, 8]]);
     }));
 
     return function (_x2) {
@@ -2715,11 +2720,8 @@ var StudyItem = function StudyItem(_ref) {
         className: "collection mx-3",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("li", {
           className: "collection-item avatar",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("i", {
-            className: "material-icons circle",
-            children: "person_outline"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
-            className: "title",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h5", {
+            className: "",
             children: name
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
             children: statusKey

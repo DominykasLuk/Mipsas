@@ -20,10 +20,17 @@ export const getStudies = () => async dispatch =>
     }
 }
 
-export const addStudy = () => async dispatch =>
+export const addStudy = formData => async dispatch =>
 {
+
+    const config = {
+        headers: {
+            "Content-Type": "application/json"
+        }
+    };
+
     try {
-        const res = await axios.post('/api/study')
+        const res = await axios.post('/api/study', formData, config)
         dispatch({
             type:ADD_STUDY,
             payload:res.data
